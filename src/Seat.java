@@ -31,7 +31,7 @@ public class Seat {
 		isReserved = true;
 	}
 	
-	public void unreserve()
+	public void unreserved()
 	{
 		isReserved = false;
 	}	

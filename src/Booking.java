@@ -48,13 +48,13 @@ public class Booking {
     	}
 	}
 	
-	public boolean unreserveSeat()
+	public boolean unreservedSeat()
 	{
-    		show.getTheatre().getRows().get(rowNumber).getSeats().get(seatNumber).unreserve();
+    		show.getTheatre().getRows().get(rowNumber).getSeats().get(seatNumber).unreserved();
     		return true;
 	}
 	
-	public Customer getCostumer()
+	public Customer getCustomer()
 	{
 		return costumer;
 	}

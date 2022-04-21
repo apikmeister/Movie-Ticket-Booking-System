@@ -2,10 +2,10 @@ import java.util.*;
 
 public class Row {
 	
-	private ArrayList<Seat> seats;
-	private int rowNumber; 
+	private final ArrayList<Seat> seats;
+	private final int rowNumber;
 	private int rowClass;
-	private int seatCount;
+	private final int seatCount;
 
 	public Row (int rowClass, int seatCount, int rowNumber)
 	{

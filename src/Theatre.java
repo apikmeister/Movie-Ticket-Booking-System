@@ -2,10 +2,10 @@ import java.util.*;
 
 public class Theatre {
 
-	private int theatreNumber;
-	private String description;
+	private final int theatreNumber;
+	private final String description;
 	private int rowCount;
-	private ArrayList<Row> rows;
+	private final ArrayList<Row> rows;
 	
 	public Theatre (int theatreNumber, String description)
 	{

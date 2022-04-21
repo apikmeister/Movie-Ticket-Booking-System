@@ -4,23 +4,21 @@ public class Cinema
 {	
 	        public static void main (String[] args)
 	        {
-	                int option = 0;
-	                ArrayList<Show >shows = new ArrayList<Show>();
-	                ArrayList<Theatre> theatres = new ArrayList<Theatre>();
-	                ArrayList<Booking> bookings = new ArrayList<Booking>();
-	                ArrayList<Customer> customers = new ArrayList<Customer>();
-	                Scanner select = new Scanner(System.in);
-	                Scanner choice = new Scanner(System.in);
-	                
-		        	//Test Objects
+	                int option;
+	                ArrayList<Show >shows = new ArrayList<>();
+	                ArrayList<Theatre> theatres = new ArrayList<>();
+	                ArrayList<Booking> bookings = new ArrayList<>();
+	                ArrayList<Customer> customers = new ArrayList<>();
+	                Scanner sc = new Scanner(System.in);
+
 	        	    Theatre testTheatre = new Theatre(1, "Main Theatre");
 	        	    testTheatre.createRows(1, 10, 7);
                 	theatres.add(testTheatre);
-                	shows.add(new Show("Der SpongeBob Schwammkopf - Film", "21.10.2011", theatres.get(0)));
+                	shows.add(new Show("SpongeBob - Film", "21.10.2011", theatres.get(0)));
 	            do
 	            {  
 	                System.out.println("------------------------------------");
-	                System.out.println(":Cinema Booking System by BS and KU:");
+	                System.out.println(":Cinema Booking System :");
 	                System.out.println("------------------------------------\n");
 	                System.out.println("Please Enter 1 to Add Theatre");
 	                System.out.println("Please Enter 2 to Add Show");
@@ -30,18 +28,18 @@ public class Cinema
 	                System.out.println("Please Enter 6 to Exit\n");
 	         
 	                System.out.print("Enter Option: ");
-	                    option = select.nextInt();
+	                    option = sc.nextInt();
 	                    
-	                    if(option==1)
+	                    if(option == 1)
 	                    {
 	                    	System.out.println("ADD THEATRE Selected");
 	                        System.out.println("-------------------------\n");
 	                    	System.out.print("Enter a name for the theatre: \n");
-	                    	String theatreName = choice.nextLine();
+	                    	String theatreName = sc.nextLine();
 	                    	System.out.print("Enter a number for the theatre: \n");
-	                    	int theatreNumber = choice.nextInt();
+	                    	int theatreNumber = sc.nextInt();
 	                    	System.out.println("Enter the number of rows:");
-	                    	int rowCount = choice.nextInt();
+	                    	int rowCount = sc.nextInt();
 	                    	Theatre theatre = new Theatre(theatreNumber, theatreName);
 	                    	theatre.createRows(1, 10, rowCount);
 	                    	theatre.createRows(1, 5, 5);
@@ -53,15 +51,15 @@ public class Cinema
 	                    	System.out.println("ADD SHOW Selected");
 	                        System.out.println("-------------------------\n");
 	                    	System.out.println("Enter the date of the Show [DD/MM/YYYY]:");
-	                        String showDate = choice.nextLine();
+	                        String showDate = sc.nextLine();
 	                        System.out.print("Enter name of Show: \n");
-	                        String showName = choice.nextLine();	
+	                        String showName = sc.nextLine();
 	                        System.out.println("Select a theatre by typing the number:");
 	                        for (int i=0; i < theatres.size(); i++) 
 	                        {	                        		                        
 	                        	System.out.println(i+1 + " " + theatres.get(i).getDescription());
 	                        }
-	                        int theatreNumber = choice.nextInt();
+	                        int theatreNumber = sc.nextInt();
 	                        shows.add(new Show(showName, showDate, theatres.get(theatreNumber-1)));
 	                    }
 	                    
@@ -73,8 +71,8 @@ public class Cinema
 	                        for (int i = 0; i < shows.size(); i++)
 	                        {
 	                        	int showNumber = i+1;
-	                        	System.out.println("Show Number: " + showNumber);;
-	                            System.out.println("Show Name: " + shows.get(i).getShowName());
+	                        	System.out.println("Show Number: " + showNumber);
+								System.out.println("Show Name: " + shows.get(i).getShowName());
 	                            System.out.println("Show Date: " + shows.get(i).getShowDate());
 	                            //System.out.println("Seat Status:" + shows.get(i).getFreeSeatsCount());
 	                            System.out.println("\n");
@@ -94,22 +92,22 @@ public class Cinema
 	                        for (int i = 0; i< shows.size(); i++)
 	                        {	                    
 	                        	int showNumber = i+1;
-	                        	System.out.println("Show Number: " + showNumber);;
-	                            System.out.println("Show Name:   " + shows.get(i).getShowName());
+	                        	System.out.println("Show Number: " + showNumber);
+								System.out.println("Show Name:   " + shows.get(i).getShowName());
 	                            System.out.println("Show Date:   " + shows.get(i).getShowDate());
 	                            System.out.print("\n");
 	                        }
 	                        System.out.println("-------------------------");
 	                        System.out.print("Enter the show number: ");
-	                        int showNumber = choice.nextInt();
-	                        int repeat = 0;
+	                        int showNumber = sc.nextInt();
+	                        int repeat;
 	                        System.out.println();
 	                        do {
 	                        	shows.get(showNumber-1).getTheatre().printSeatPlan();
 	                        	System.out.print("Enter the row: ");
-	                        	int selectedRow = choice.nextInt();
+	                        	int selectedRow = sc.nextInt();
 	                        	System.out.print("Enter the seat: ");
-	                        	int selectedSeat = choice.nextInt();
+	                        	int selectedSeat = sc.nextInt();
 	                        	System.out.println();
 	                        	Booking booking = new Booking(customer, shows.get(showNumber-1));
 	                        	if (booking.reserveSeat(selectedRow-1, selectedSeat-1)) {
@@ -121,7 +119,7 @@ public class Cinema
 	                        	}
 	                        	System.out.println();
 	                        	System.out.print("Enter 1 to reserve another seat or 2 to check out: ");
-	                        	repeat = choice.nextInt();
+	                        	repeat = sc.nextInt();
 	                        } while (repeat == 1);
 	                        System.out.println();
 	                        System.out.println("Your Bill");
@@ -129,7 +127,7 @@ public class Cinema
                         	int totalCost = 0;
 	                        for (Booking booking : bookings)
 	                        {
-	                        	if (booking.getCostumer().getId() == customer.getId())
+	                        	if (booking.getCustomer().getId() == customer.getId())
 	                        	{
 	                        		totalCost += booking.getCost();
 	                        	}
@@ -144,19 +142,16 @@ public class Cinema
 	                        System.out.println("CANCEL BOOKING Selected");
 	                        System.out.println("-------------------------\n");
 	                        System.out.print("Enter the costumer id: ");
-	                        int customerId = choice.nextInt();
+	                        int customerId = sc.nextInt();
 	                        for (Customer customer : customers) {
 	                        	if (customer.getId() == customerId)
 	                        	{
 	                        		for(Booking booking : bookings)
 	                        		{
-	                        			if (booking.getCostumer().getId() == customer.getId())
+	                        			if (booking.getCustomer().getId() == customer.getId())
 	                        			{
-	                        				if (booking.unreserveSeat())
-	                        				{
-	                        					
-	                        				}
-	                        			}
+											booking.unreservedSeat();
+										}
 	                        		}
 	                        		System.out.println("Your reservation has been canceled!");
 	                        	}
