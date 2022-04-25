@@ -12,7 +12,7 @@ public class Cinema {
         Theatre testTheatre = new Theatre(1, "Main Theatre");
         testTheatre.createRows(1, 10, 7);
         theatres.add(testTheatre);
-        shows.add(new Show("SpongeBob - Film", "21/03/2022", theatres.get(0)));
+        shows.add(new Show("Spiderman The Movie", "21/03/2022", theatres.get(0)));
 
         System.out.println("Welcome to Cinema Booking System");
         System.out.println("Please Login");
@@ -23,7 +23,7 @@ public class Cinema {
         sc.nextLine();
         System.out.println("Enter your account type (Customer / Admin) : ");
         String type = sc.nextLine();
-        Customer userDetail = new Customer(username, type);
+        Customer userDetail = new Customer(username, password, type);
 
         if (userDetail.getType().equals("Customer") || userDetail.getType().equals("CUSTOMER") || userDetail.getType().equals("customer")) {
             do {
@@ -65,10 +65,6 @@ public class Cinema {
                     System.out.println("-------------------------");
                     System.out.print("Enter the show number: ");
                     int showNumber = sc.nextInt();
-                    //sc.nextLine(); //temporary
-                    ///System.out.println("Please enter your name : "); //temporary
-                    ///String customerName = sc.nextLine(); //temporary
-                    ///Customer customer1 = new Customer(customerName); //temporary
                     int repeat;
                     System.out.println();
                     Random rnd = new Random();
@@ -140,7 +136,8 @@ public class Cinema {
                 System.out.println("------------------------------------\n");
                 System.out.println("Please Enter 1 to Add Theatre");
                 System.out.println("Please Enter 2 to Add Movie");
-                System.out.println("Please Enter 3 to Exit");
+                System.out.println("Please Enter 3 to Display Show");
+                System.out.println("Please Enter 4 to Exit");
 
                 System.out.print("Enter Option: ");
                 option = sc.nextInt();
@@ -178,6 +175,20 @@ public class Cinema {
                 }
 
                 if (option == 3) {
+                    System.out.println("Shows Available");
+                    System.out.println("-------------------------\n");
+                    for (int i = 0; i < shows.size(); i++) {
+                        int showNumber = i + 1;
+                        System.out.println("Show Number: " + showNumber);
+                        System.out.println("Show Name: " + shows.get(i).getShowName());
+                        System.out.println("Show Date: " + shows.get(i).getShowDate());
+                        //System.out.println("Seat Status:" + shows.get(i).getFreeSeatsCount());
+                        System.out.println("\n");
+                    }
+                    System.out.println("End of Show List.\n");
+                }
+
+                if (option == 4) {
                     System.exit(0);
                 }
 

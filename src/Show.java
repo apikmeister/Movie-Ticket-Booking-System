@@ -24,7 +24,7 @@ public class Show {
 
     public int getFreeSeatsCount() {
         for (Seat seat : seats) {
-            if (!seat.getReservationStatus()) {
+            if (seat.getReservationStatus()) {
                 freeSeats++;
             }
         }

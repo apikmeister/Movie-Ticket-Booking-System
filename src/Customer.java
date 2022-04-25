@@ -1,26 +1,17 @@
 public class Customer {
 
     int id;
-    String name;
-    String surname;
-    String street;
-    int streetNumber;
-    int plz;
-    String city;
     String username;
     String password;
     String type;
-
-    public Customer(String name) {
-        this.name = name;
-    } //temporary
 
     public Customer(int id) {
         this.id = id;
     }
 
-    public Customer(String username, String type) {
+    public Customer(String username, String password, String type) {
         this.username = username;
+        this.password = password;
         this.type = type;
     }
 
@@ -40,41 +31,20 @@ public class Customer {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
-    public void setPLZ(int plz) {
-        this.plz = plz;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void printCustomer() {
-        System.out.print(surname + " " + name);
-        System.out.println(street + " " + streetNumber);
-        System.out.println(plz + " " + city);
-    }
 }
