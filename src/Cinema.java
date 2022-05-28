@@ -105,12 +105,7 @@ public class Cinema {
 
 
                     System.out.println("-------------------------\n");
-                    //System.out.println("Please select your payment method. \n1. Cash \n2. Online \n3. Card");
-                    //int payType = sc.nextInt();
                     String strPayType = null;
-                    //Payment payment = new Payment("");
-                    //Cash cash = new Cash("");
-                    //Online online = new Online("",);
                     int end = 1;
                     while (end != 0) {
                         //problem : start loop after settle e-wallet
@@ -141,38 +136,25 @@ public class Cinema {
                                 System.out.println(cash.toString() + customer2.getId());
                                 break;
                             case 2:
-                                /*System.out.println("Pick your online payment type. \n1. e-Wallet \n2. FPX (Online Banking)");
-                                sc.nextLine();
-                                String onType = sc.nextLine();
-
-                                Online online = new Online("", onType);*/
-                                /*Online eWallet = new eWallet(strPayType, "", "");
-                                Online fpx = new Online(strPayType, "");*/
                                 int rpt = 1;
                                 while (rpt != 0) {
                                     System.out.println("Pick your online payment type. \n1. e-Wallet \n2. FPX (Online Banking)");
-                                    /*sc.nextLine();
-                                    String onType = sc.nextLine();*/
-                                    //String strOnType = new String();
                                     int onType = sc.nextInt();
 
                                     int transID = rnd.nextInt(999999);
                                     int otpNo = rnd.nextInt(9999);
-                                    //Online online = new Online(strPayType, "");
                                     Online eWallet = new eWallet(strPayType, "", Integer.toString(transID));
                                     Online fpx = new FPX(strPayType, "", otpNo);
                                     if (onType == 1) {
                                         online.setType("e-Wallet");
-                                        //strOnType = "e-Wallet";
-                                        System.out.println(online.toString());
-                                        System.out.println(eWallet.toString());
+                                        System.out.println(online);
+                                        System.out.println(eWallet);
 
                                         rpt = 0;
                                     } else if (onType == 2) {
                                         online.setType("FPX (Online Banking)");
-                                        //strOnType = "FPX (Online Banking)";
-                                        System.out.println(online.toString());
-                                        System.out.println(fpx.toString());
+                                        System.out.println(online);
+                                        System.out.println(fpx);
                                         rpt = 0;
                                     } else {
                                         System.out.println("Wrong Method Selection! Please select between 1 and 2.");
@@ -183,19 +165,11 @@ public class Cinema {
                             case 3:
                                 online.setType("Card");
                                 Card card = new Card("", "");
-                                //System.out.println("Please enter your card no :");
                                 int cardNo = sc.nextInt();
                                 System.out.println("Your card has been charged! Thank you.");
                                 break;
                         }
                     }
-
-
-
-
-                    ///int payType = sc.nextInt();
-
-
                 }
 
                 if (option == 3) {
