@@ -1,4 +1,4 @@
-public class Customer extends User{
+public class Customer {
 
     int id;
     String username;
