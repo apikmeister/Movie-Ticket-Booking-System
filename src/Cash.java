@@ -6,7 +6,7 @@ public class Cash extends Payment {
 
     @Override
     public String toString() {
-        return "Pay at counter by showing your booking ID : ";
+        return "Please pay at counter by showing your booking ID : ";
     }
 
 }

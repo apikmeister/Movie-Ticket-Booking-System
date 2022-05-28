@@ -108,7 +108,6 @@ public class Cinema {
                     String strPayType = null;
                     int end = 1;
                     while (end != 0) {
-                        //problem : start loop after settle e-wallet
                         System.out.println("Please select your payment method. \n1. Cash \n2. Online \n3. Card");
                         int payType = sc.nextInt();
                         if (payType == 1) {
@@ -140,7 +139,6 @@ public class Cinema {
                                 while (rpt != 0) {
                                     System.out.println("Pick your online payment type. \n1. e-Wallet \n2. FPX (Online Banking)");
                                     int onType = sc.nextInt();
-
                                     int transID = rnd.nextInt(999999);
                                     int otpNo = rnd.nextInt(9999);
                                     Online eWallet = new eWallet(strPayType, "", Integer.toString(transID));
@@ -166,6 +164,7 @@ public class Cinema {
                                 online.setType("Card");
                                 Card card = new Card("", "");
                                 int cardNo = sc.nextInt();
+                                Card card1 = new Card(online.getPayType(), online.getType(), cardNo);
                                 System.out.println("Your card has been charged! Thank you.");
                                 break;
                         }

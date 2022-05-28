@@ -18,6 +18,6 @@ public class FPX extends Online {
     @Override
     public String toString() {
         return "FPX " +
-                "OTP " + OTP;
+                "OTP Number = " + OTP;
     }
 }
