@@ -1,0 +1,124 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+public class GUI extends JFrame{
+    
+    private JButton button1  = new JButton("Display Movies");
+    private JButton button2  = new JButton("Make Bookings");
+    private JButton button3  = new JButton("Cancel Bookings");
+    private JButton button4  = new JButton("Exit");
+    private GridLayout layout = new GridLayout(2, 2);
+    
+    public GUI() {
+        super("Movie Ticket Booking: Choose Action");
+        setLayout(layout);
+        button4.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            } // end method actionPerformed
+        } // end anonymous inner class
+        ); 
+        
+        add(button1);
+        add(button2);
+        add(button3);
+        add(button4);
+        
+        setSize(400, 130);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+    }
+    
+    public static void main(String[] args) {
+        LoginFrame login = new LoginFrame();
+        while (true) {
+            if (login.isLogged()) {
+                Customer userDetails = login.getInfo();
+                login.close();
+                break;
+            }
+            else System.out.println(login.isLogged()); // i dont know why if I remove this, it doesnt work
+        }
+        
+        System.out.println(login.getInfo().username + " " + login.getInfo().password);
+        GUI mainFrame = new GUI();
+    }
+    
+}
+
+class LoginFrame extends JFrame {
+    
+    private JLabel label1 = new JLabel("Username: ");
+    private JLabel label2 = new JLabel("Password: ");
+    private JLabel label3 = new JLabel("Type: ");
+    private JPanel panel1;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JTextField field1 = new JTextField(10);
+    private JTextField field2 = new JTextField(10);
+    private JTextField field3 = new JTextField(10);
+    
+    private JButton loginButton = new JButton("Login");
+    private String username;
+    private String password;
+    private String type;
+    private boolean Logged = false;
+    public LoginFrame() {
+        super("Login");
+        
+        setLayout(new BorderLayout());
+        
+        panel1 = new JPanel();
+        panel1.add(label1);
+        panel1.add(field1);
+        add(panel1, BorderLayout.NORTH);
+        
+        panel2 = new JPanel();
+        panel2.add(label2);
+        panel2.add(field2);
+        add(panel2, BorderLayout.WEST);
+        
+        panel3 = new JPanel();
+        field3.setText("Customer/Admin");
+        panel3.add(label3);
+        panel3.add(field3);
+        add(panel3, BorderLayout.EAST);
+        
+        loginButton.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                username = field1.getText();
+                password = field2.getText();
+                type = field3.getText();
+                setLogged(true);
+                setVisible(false);
+            } // end method actionPerformed
+        } // end anonymous inner class
+        ); 
+        
+        add(loginButton, BorderLayout.SOUTH);
+        setSize(400, 130);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public Customer getInfo() {
+        return new Customer(this.username, this.password, this.type);
+    }
+
+    public boolean isLogged() {
+        return Logged;
+    }
+
+    public void setLogged(boolean Logged) {
+        this.Logged = Logged;
+    }
+    
+    public void close() {
+        dispose();
+    }
+}
